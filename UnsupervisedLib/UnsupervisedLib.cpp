@@ -2,7 +2,8 @@
 //
 
 #include "UnsupervisedLib.h"
-#include "Kmeans.h"
+#include "algos/Kmeans.h"
+#include "util/Printer.h"
 
 
 int main()
@@ -44,6 +45,10 @@ int main()
 	for (int kk : k.predict(d)) {
 		std::cout << "Prediction : " << kk<<"\n";
 	}
+
+	print p;
+	p.dataFrame("Data Points", d);
+	p.dataFrame("Centroid Results", k.centroids);
 
 	return 0;
 }
