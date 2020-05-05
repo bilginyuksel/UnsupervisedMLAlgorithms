@@ -2,25 +2,50 @@
 
 
 std::vector<std::vector<float>> KMeans::randomize_centroids(
-	int n_features) {
+	int n_features,
+	const std::vector<std::vector<float>>& data) {
 	/*
 	Randomize centroid points according to 
 	cluster_size and feature_size.
 	To evaluate this method find the min, max data points 
 	from the actual data.
 	*/
+	// ------------------------------------------------------
+	/*
+	Randomize numbers between the largest point of data and the minimum point of data
+	----------------------------------------------------------*/
+	std::vector<float> min_elements;
+	std::vector<float> max_elements;
+	for (int i = 0; i < n_features; ++i) {
+		min_elements.push_back(data[0][i]);
+		max_elements.push_back(data[0][i]);
+	}
+	for (int i = 1; i < data.size(); ++i) {
+		for (int j = 0; j < data[0].size(); ++j) {
+			if (data[i][j] < min_elements[j]) min_elements[j] = data[i][j];
+			if (data[i][j] > max_elements[j]) max_elements[j] = data[i][j];
+		}
+	}
 
 	srand(time(NULL));
-
-
+	
+		
 	std::vector<std::vector<float>> tmp_centroids;
 	for (int i = 0; i < n_clusters; ++i) {
 		std::vector<float> tmp;
 		for (int j = 0; j < n_features; ++j) {
-			tmp.push_back(rand() % 10 + 1);
+			tmp.push_back(rand() % (int)(max_elements[j] + min_elements[j])+ ((int)min_elements[j]));
 		}
 		tmp_centroids.push_back(tmp);
 	}
+
+	/*
+	std::cout << "Temp Centroids\n";
+	for (std::vector<float>& t : tmp_centroids) {
+		for (int i = 0; i < t.size(); ++i) std::cout << t[i] << " ";
+		std::cout << "\n";
+	}
+	*/
 
 	return tmp_centroids;
 }
@@ -133,9 +158,11 @@ void KMeans::fit(
 	so add max_iter situation to this while loop.
 	*/
 
-	// For test purpose
-	this-> centroids  = randomize_centroids(3);
-	float error = -1;
+	// Check if data is valid
+	
+
+	this-> centroids  = randomize_centroids(data[0].size(), data);
+	float error = 100;
 	int iteration = -1;
 
 	while (error != 0 && max_iter>=++iteration) {

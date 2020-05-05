@@ -20,5 +20,5 @@ public:
 	Like K-Means we already built kMeans and this class
 	is builtin for this library.
 	*/
-	void kMeans(const KMeans& k);
+	// void kMeans(const KMeans& k);
 };

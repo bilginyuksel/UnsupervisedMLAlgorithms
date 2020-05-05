@@ -13,7 +13,8 @@ private:
 
 
 	std::vector<std::vector<float>> randomize_centroids(
-		int n_features);
+		int n_features,
+		const std::vector<std::vector<float>>& data);
 
 	float calculateError(
 		const std::vector<std::vector<float>>& old_centroids,

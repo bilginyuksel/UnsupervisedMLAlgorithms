@@ -94,6 +94,27 @@ build UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\util\FileReader.cpp.obj: CX
   TARGET_COMPILE_PDB = UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\
   TARGET_PDB = UnsupervisedLib\UnsupervisedLib.pdb
 
+build UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\algos\Hierarchical.cpp.obj: CXX_COMPILER__UnsupervisedLib ..\..\..\UnsupervisedLib\algos\Hierarchical.cpp || cmake_object_order_depends_target_UnsupervisedLib
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  OBJECT_DIR = UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir
+  OBJECT_FILE_DIR = UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\algos
+  TARGET_COMPILE_PDB = UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\
+  TARGET_PDB = UnsupervisedLib\UnsupervisedLib.pdb
+
+build UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\util\algo.cpp.obj: CXX_COMPILER__UnsupervisedLib ..\..\..\UnsupervisedLib\util\algo.cpp || cmake_object_order_depends_target_UnsupervisedLib
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  OBJECT_DIR = UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir
+  OBJECT_FILE_DIR = UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\util
+  TARGET_COMPILE_PDB = UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\
+  TARGET_PDB = UnsupervisedLib\UnsupervisedLib.pdb
+
+build UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\algos\bagglomerative.cpp.obj: CXX_COMPILER__UnsupervisedLib ..\..\..\UnsupervisedLib\algos\bagglomerative.cpp || cmake_object_order_depends_target_UnsupervisedLib
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  OBJECT_DIR = UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir
+  OBJECT_FILE_DIR = UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\algos
+  TARGET_COMPILE_PDB = UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\
+  TARGET_PDB = UnsupervisedLib\UnsupervisedLib.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target UnsupervisedLib
@@ -102,7 +123,7 @@ build UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\util\FileReader.cpp.obj: CX
 #############################################
 # Link the executable UnsupervisedLib\UnsupervisedLib.exe
 
-build UnsupervisedLib\UnsupervisedLib.exe: CXX_EXECUTABLE_LINKER__UnsupervisedLib UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\UnsupervisedLib.cpp.obj UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\algos\KMeans.cpp.obj UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\util\Printer.cpp.obj UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\util\FileReader.cpp.obj
+build UnsupervisedLib\UnsupervisedLib.exe: CXX_EXECUTABLE_LINKER__UnsupervisedLib UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\UnsupervisedLib.cpp.obj UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\algos\KMeans.cpp.obj UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\util\Printer.cpp.obj UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\util\FileReader.cpp.obj UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\algos\Hierarchical.cpp.obj UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\util\algo.cpp.obj UnsupervisedLib\CMakeFiles\UnsupervisedLib.dir\algos\bagglomerative.cpp.obj
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

@@ -47,7 +47,10 @@
 				0,
 				2,
 				3,
-				4
+				4,
+				5,
+				6,
+				7
 			]
 		}
 	],
@@ -87,7 +90,10 @@
 				0,
 				2,
 				3,
-				4
+				4,
+				5,
+				6,
+				7
 			]
 		},
 		{
@@ -127,6 +133,24 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "UnsupervisedLib/util/FileReader.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UnsupervisedLib/algos/Hierarchical.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UnsupervisedLib/util/algo.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UnsupervisedLib/algos/bagglomerative.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

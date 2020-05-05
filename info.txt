@@ -1,0 +1,5 @@
+K-Means
+K-Means++
+K-median
+Hierarchial Clustering
+Least squares regression

@@ -4,6 +4,8 @@
 #include "UnsupervisedLib.h"
 #include "algos/Kmeans.h"
 #include "util/Printer.h"
+#include "util/algo.h"
+#include "algos/bagglomerative.h"
 
 
 int main()
@@ -25,16 +27,14 @@ int main()
 		{3,34,-1},
 		{-15,13,53},
 		{13,4,12} };
+
+
 	KMeans k(3, 100);
-	for (std::vector<float> f : k.centroids) {
-		for (int i = 0; i < f.size(); ++i) std::cout << f[i] << " ";
-		std::cout << std::endl;
-	}
+	
 	k.fit(d);
-	for (std::vector<float> f : k.centroids) {
-		for (int i = 0; i < f.size(); ++i) std::cout << f[i] << " ";
-		std::cout << std::endl;
-	}
+	print p;
+	p.dataFrame("Data Points", d);
+	p.dataFrame("Final Centroid Values",k.centroids);
 	
 	for (float f : k.error_logs)
 		std::cout << "Error: " << f << "\n";
@@ -46,9 +46,16 @@ int main()
 		std::cout << "Prediction : " << kk<<"\n";
 	}
 
-	print p;
-	p.dataFrame("Data Points", d);
-	p.dataFrame("Centroid Results", k.centroids);
+	const std::vector<std::vector<float>> dd{
+		{1.25,0},
+		{-1,5.2},
+		{3.1,4.3},
+		{-1.25,3.21},
+		{0,-5.82},
+		{3.1,1.7}};
+	HierarchicalTree tree;
+	tree.build(dd);
+	
 
 	return 0;
 }
