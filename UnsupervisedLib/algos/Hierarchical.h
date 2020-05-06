@@ -1,45 +1,66 @@
 #ifndef vector
 #include <vector>
 #endif
-#ifndef map
-#include <map>
+
+#ifndef iostream
+#include <iostream>
 #endif
 
-class Cluster {
-private:
-	std::vector<std::vector<float>> nodes;
-	std::vector<float> centroid;
-	
-	std::vector<float> computeCentroids() {
-		int n_features = nodes[0].size();
-		for (int i = 0; i < n_features; ++i) centroid.push_back(0);
-		
-		for (int i = 0; i < nodes.size(); ++i) {
-			for (int j = 0; j < n_features; ++j)
-				centroid[j] += nodes[i][j];
-		}
+#ifndef cmath
+#include <cmath>
+#endif
 
-		for (int i = 0; i < n_features; ++i)
-			centroid[i] /= nodes.size();
+#ifndef utility
+#include <utility>
+#endif
 
-		return centroid;
+struct vertex {
+	std::vector<float> points;
+
+	vertex(std::vector<float> points) {
+		this->points = points;
 	}
-
-
-public:
-	Cluster(
-		const std::vector<std::vector<float>> n) {
-		// Calculate the centroid according to data points.
-		this->nodes = n;
-		this->centroid = computeCentroids();
-	}
-
-	friend class HierarchicalClu;
 };
 
-class HierarchicalClu {
-private:
-	std::vector<std::vector<Cluster>> clusters;
+class subTree{
 public:
-	void fit(const std::vector<std::vector<float>>& data);
+	std::vector<vertex> vertexes;
+	std::vector<float> cent_points;
+
+	subTree(vertex n) {
+		vertexes.push_back(n);
+		this->centroid();
+	}
+
+	// copy constuctor
+	subTree(const subTree& tree) {
+		for (const vertex& n : tree.vertexes) vertexes.push_back(n);
+		this->centroid();
+	}
+
+	void merge(subTree tree);
+	friend class hierarchicalTree;
+
+private:
+	void centroid();
+
 };
+
+class hierarchicalTree  {
+
+public:
+	hierarchicalTree() {
+		/*
+		Also we can add a parameter to choose which method to use
+		while building the tree. Default we're using euclidian distance method.
+		But it is easy to change.
+		*/
+	}
+	std::vector<std::vector<subTree>> tree;
+	void build(const std::vector<std::vector<float>>& data);
+
+private:
+	int n_cluster;
+	std::pair<int, int> findTheClosestIndex(const std::vector<subTree>& trees);
+};
+

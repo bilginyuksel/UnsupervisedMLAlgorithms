@@ -20,14 +20,16 @@ void print::dataFrame(
 	for (int i = 0; i < d[0].size() * 22; i++) std::cout << "-";
 	std::cout <<"\n";
 	std::cout << "Index"<< std::setw(18);
-	for (int i = 0; i < d[0].size(); ++i) std::cout<<i<<std::setw(20);
-	std::cout << "\n";
+	for (int i = 0; i < d[0].size(); ++i) std::cout<<i<<(i+1!=d[0].size()?std::setw(20):std::setw(5));
+	std::cout << "|\n";
 
 	for (int i = 0; i < d.size();++i) {
 		std::cout << i << std::setw(23-digitCalculator(i));
 		for (int j = 0; j < d[i].size(); ++j) {
-			std::cout << std::showpoint<< d[i][j]<< std::setw(20);
+			std::cout << std::showpoint<< d[i][j]<< ((j+1)!=d[i].size()?std::setw(20):std::setw(5));
 		}
-		std::cout << "\n";
+		std::cout <<"|\n";
 	}
+	for (int i = 0; i < d[0].size() * 22; i++) std::cout << "-";
+	std::cout << "\n";
 }

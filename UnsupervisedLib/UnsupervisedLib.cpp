@@ -4,9 +4,10 @@
 #include "UnsupervisedLib.h"
 #include "algos/Kmeans.h"
 #include "util/Printer.h"
-#include "util/algo.h"
 #include "algos/bagglomerative.h"
-
+#include "algos/Hierarchical.h"
+#include "algos/kbase.h"
+#include "algos/lsr.h"
 
 int main()
 {
@@ -53,9 +54,34 @@ int main()
 		{-1.25,3.21},
 		{0,-5.82},
 		{3.1,1.7}};
-	HierarchicalTree tree;
-	tree.build(dd);
-	
+	// HierarchicalTree tree;
+	// tree.build(dd);
 
+	// std::cout << "\n--------------------------------------\n";
+	// std::cout << "\n*******************************************\n";
+	hierarchicalTree t;
+	t.build(d);
+	
+	k_median m(2, 100);
+	m.fit(d);
+	p.dataFrame("Final Centroid Values", m.centroids);
+	for (int kk : m.predict(d)) {
+		std::cout << "Prediction : " << kk << "\n";
+	}
+	/*
+	k_means_plus pl(2, 100);
+	pl.fit(d);
+	*/
+	std::vector<std::pair<float, float>> pair;
+	pair.push_back(std::make_pair(2, 4));
+	pair.push_back(std::make_pair(3, 5));
+	pair.push_back(std::make_pair(5, 7));
+	pair.push_back(std::make_pair(7, 10));
+	pair.push_back(std::make_pair(9, 15));
+	LSR lsr;
+	lsr.fit(pair);
+	lsr.displayEquation();
+	std::cout<<"Prediction: "<< lsr.predict(8)<<"\n";
+	
 	return 0;
 }
