@@ -3,3 +3,7 @@ K-Means++
 K-median
 Hierarchial Clustering
 Least squares regression
+Gaussian Distribution
+Density Based Clustering
+Fuzzy C-Means Clustering
+Mean Shift Clustering

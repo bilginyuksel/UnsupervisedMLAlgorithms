@@ -68,10 +68,11 @@ int main()
 	for (int kk : m.predict(d)) {
 		std::cout << "Prediction : " << kk << "\n";
 	}
-	/*
-	k_means_plus pl(2, 100);
-	pl.fit(d);
-	*/
+	std::cout << "\n***** K-MEANS PLUS PLUS ***********************\n";
+	k_means_plus plu(3, 100);
+	plu.fit(d);
+	p.dataFrame("K-Means Plus Centroid Values", plu.centroids);
+
 	std::vector<std::pair<float, float>> pair;
 	pair.push_back(std::make_pair(2, 4));
 	pair.push_back(std::make_pair(3, 5));

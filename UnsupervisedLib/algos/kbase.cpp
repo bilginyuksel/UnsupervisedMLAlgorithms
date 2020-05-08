@@ -89,14 +89,38 @@ std::vector<std::vector<float>> k_median::randomize_centroids(
 	/*
 	Randomize numbers between the largest point of data and the minimum point of data
 	----------------------------------------------------------*/
+	std::vector<float> min_elements;
+	std::vector<float> max_elements;
+	for (int i = 0; i < n_features; ++i) {
+		min_elements.push_back(data[0][i]);
+		max_elements.push_back(data[0][i]);
+	}
+	for (int i = 1; i < data.size(); ++i) {
+		for (int j = 0; j < data[0].size(); ++j) {
+			if (data[i][j] < min_elements[j]) min_elements[j] = data[i][j];
+			if (data[i][j] > max_elements[j]) max_elements[j] = data[i][j];
+		}
+	}
 
 	srand(time(NULL));
 
+
 	std::vector<std::vector<float>> tmp_centroids;
 	for (int i = 0; i < n_clusters; ++i) {
-		int r = rand() % data.size();
-		tmp_centroids.push_back(data[r]);
+		std::vector<float> tmp;
+		for (int j = 0; j < n_features; ++j) {
+			tmp.push_back(rand() % (int)(max_elements[j] + min_elements[j]) + ((int)min_elements[j]));
+		}
+		tmp_centroids.push_back(tmp);
 	}
+
+	/*
+	std::cout << "Temp Centroids\n";
+	for (std::vector<float>& t : tmp_centroids) {
+		for (int i = 0; i < t.size(); ++i) std::cout << t[i] << " ";
+		std::cout << "\n";
+	}
+	*/
 
 	return tmp_centroids;
 
@@ -139,9 +163,56 @@ std::vector<std::vector<float>> k_means_plus::randomize_centroids(
 	int n_features,
 	const std::vector<std::vector<float>>& data) {
 	
-	std::vector<std::vector<float>> t;
+	std::vector<std::vector<float>> cent;
+	// initialize first centroid
+	int random = rand() % data.size();
+	cent.push_back(data[random]);
 
-	return t;
+	for (int cluster = 1; cluster < n_clusters; ++cluster) {
+		
+		// For every center point after the first one
+		// generate the farthest center point.
+		// To find the farthest point first traverse the data and calculate the
+		// distances between the data and the centroids and get the minimum data.
+		// So this means find the closest center to that data and store the distance of it.
+		// After finish traversing the data list find the maximum distance from distance list.
+		// And generate new centroid to there.
+		std::vector<float> distances;
+		for (int d = 0; d < data.size(); ++d) {
+
+			float min_distance = dist::euclid(data[d], cent[0]); // first min initialization
+			for (int c = 1; c < cent.size(); ++c) {
+				// Find the min distance between data points
+				float euc = dist::euclid(data[d], cent[c]);
+				if (min_distance > euc) min_distance = euc;
+			}
+			// Add the minimum distance to distane list.
+			distances.push_back(min_distance);
+		}
+
+		// Then find the maximum distance from distance list.
+		float max_dist = distances[0];
+		int max_dist_index = 0;
+		for (int d_index = 1; d_index < distances.size(); ++d_index) {
+			// Find max distance
+			if (max_dist < distances[d_index]) {
+				max_dist = distances[d_index];
+				max_dist_index = d_index;
+			}
+		}
+		// Generate new center point
+		cent.push_back(data[max_dist_index]);
+	}
+	
+	// Print new center points
+	std::cout << "\nGenerated centroids\n";
+	for (int i = 0; i < cent.size(); ++i) {
+		std::cout << i << ". Centroid\n";
+		for (int j = 0; j < cent[i].size(); ++j) std::cout << cent[i][j] << ", ";
+		std::cout << "\n";
+	}
+
+	return cent;
 }
 
 std::vector<std::vector<float>> k_means_plus::update_centroids(
