@@ -1,3 +1,4 @@
+
 #ifndef vector
 #include <vector>
 #endif
@@ -12,3 +13,11 @@ namespace dist {
 		const std::vector<float>& d,
 		const std::vector<float>& d1);
 };
+
+
+namespace dcleaner {
+
+	std::vector<std::vector<float>> reverseData(
+		const std::vector<std::vector<float>>& data);
+};
+

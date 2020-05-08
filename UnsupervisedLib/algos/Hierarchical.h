@@ -14,11 +14,18 @@
 #include <utility>
 #endif
 
+#ifndef AGGLOMERATIVE
+
+
+#define AGGLOMERATIVE
+
 struct vertex {
+	int id;
 	std::vector<float> points;
 
-	vertex(std::vector<float> points) {
+	vertex(std::vector<float> points, int id) {
 		this->points = points;
+		this->id = id;
 	}
 };
 
@@ -64,3 +71,4 @@ private:
 	std::pair<int, int> findTheClosestIndex(const std::vector<subTree>& trees);
 };
 
+#endif // !AGGLOMERATIVE

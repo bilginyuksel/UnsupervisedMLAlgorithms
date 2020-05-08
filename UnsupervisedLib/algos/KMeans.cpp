@@ -14,6 +14,7 @@ std::vector<std::vector<float>> KMeans::randomize_centroids(
 	/*
 	Randomize numbers between the largest point of data and the minimum point of data
 	----------------------------------------------------------*/
+	/*
 	std::vector<float> min_elements;
 	std::vector<float> max_elements;
 	for (int i = 0; i < n_features; ++i) {
@@ -26,17 +27,15 @@ std::vector<std::vector<float>> KMeans::randomize_centroids(
 			if (data[i][j] > max_elements[j]) max_elements[j] = data[i][j];
 		}
 	}
+	*/
 
 	srand(time(NULL));
 	
 		
 	std::vector<std::vector<float>> tmp_centroids;
 	for (int i = 0; i < n_clusters; ++i) {
-		std::vector<float> tmp;
-		for (int j = 0; j < n_features; ++j) {
-			tmp.push_back(rand() % (int)(max_elements[j] + min_elements[j])+ ((int)min_elements[j]));
-		}
-		tmp_centroids.push_back(tmp);
+		int random = rand() % data.size();
+		tmp_centroids.push_back(data[random]);
 	}
 
 	/*

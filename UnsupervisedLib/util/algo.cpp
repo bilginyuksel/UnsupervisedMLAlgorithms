@@ -14,3 +14,18 @@ float dist::euclid(
 
 	return sqrt(euclid);
 }
+
+std::vector<std::vector<float>> dcleaner::reverseData(
+	const std::vector<std::vector<float>>& data) {
+
+	std::vector < std::vector<float>> clean;
+
+	for (int i = 0; i < data[0].size(); ++i) {
+		std::vector<float> tmp;
+		for (int j = 0; j < data.size(); ++j) {
+			tmp.push_back(data[j][i]);
+		}
+		clean.push_back(tmp);
+	}
+	return clean;
+}

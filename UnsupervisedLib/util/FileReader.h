@@ -1,12 +1,16 @@
-#ifndef vector
+#ifndef READER
 #include <vector>
-#endif
+#include <fstream>
+#include <utility>
+#include <stdexcept>
+#include <sstream>
+#include <iostream>
 
 
+#define READER 
 class freader {
 public:
-	template <typename T>
-	const std::vector<std::vector<T>> read();
+	std::vector<std::pair<std::string, std::vector<float>>> read_csv(std::string filename);
 
 	/*
 	read from txt files. 
@@ -15,3 +19,5 @@ public:
 	if he wants so.
 	*/
 };
+
+#endif

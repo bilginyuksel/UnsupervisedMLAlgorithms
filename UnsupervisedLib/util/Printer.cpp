@@ -33,3 +33,27 @@ void print::dataFrame(
 	for (int i = 0; i < d[0].size() * 22; i++) std::cout << "-";
 	std::cout << "\n";
 }
+
+const void print::print1D(
+	std::string continious_content,
+	const std::vector<float>& data) {
+
+	std::cout << "\n" << continious_content << " LOGS..\n";
+
+	for (const float& t : data) {
+		std::cout << continious_content << ": " << t << "\n";
+	}
+
+}
+
+const void print::print1D(
+	std::string continious_content,
+	const std::vector<int>& data) {
+
+	std::cout << "\n" << continious_content << " LOGS..\n";
+
+	for (const int& t : data) {
+		std::cout << continious_content << ": " << t << "\n";
+	}
+
+}

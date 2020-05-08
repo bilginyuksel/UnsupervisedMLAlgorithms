@@ -50,8 +50,9 @@ void hierarchicalTree::build(const std::vector<std::vector<float>>& data) {
 	first thing to do is make all data node.
 	*/
 	std::vector<vertex> nodes;
+	int it = 0;
 	for (const std::vector<float>& d : data) {
-		nodes.push_back(vertex(d));
+		nodes.push_back(vertex(d,it++));
 	}
 
 	// Make all nodes a subTree
@@ -85,11 +86,14 @@ void hierarchicalTree::build(const std::vector<std::vector<float>>& data) {
 		for (const subTree& sT : t) {
 			// Print Node's in subTree
 			std::cout << "{";
+			for (int i = 0; i < sT.vertexes.size(); ++i) std::cout << sT.vertexes[i].id << ", ";
+			/*
 			for (const vertex& n : sT.vertexes) {
 				std::cout << " (";
 				for (int i = 0; i < n.points.size(); ++i) std::cout << n.points[i] << ", ";
 				std::cout <<  ") ";
 			}
+			*/
 			std::cout << "}\n";
 		}
 	}

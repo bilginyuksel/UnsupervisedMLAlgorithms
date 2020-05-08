@@ -1,3 +1,4 @@
+
 #include <vector>
 #include <stdlib.h>
 #include <time.h>
@@ -5,6 +6,10 @@
 #ifndef iostream
 #include <iostream>
 #endif
+
+#ifndef KMEANS
+
+#define KMEANS
 
 class KMeans {
 private:
@@ -55,3 +60,6 @@ public:
 		const std::vector<std::vector<float>>& t);
 };
 
+
+
+#endif // !KMEANS

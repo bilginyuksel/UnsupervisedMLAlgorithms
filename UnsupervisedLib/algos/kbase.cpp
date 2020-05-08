@@ -89,6 +89,7 @@ std::vector<std::vector<float>> k_median::randomize_centroids(
 	/*
 	Randomize numbers between the largest point of data and the minimum point of data
 	----------------------------------------------------------*/
+	/*
 	std::vector<float> min_elements;
 	std::vector<float> max_elements;
 	for (int i = 0; i < n_features; ++i) {
@@ -101,17 +102,23 @@ std::vector<std::vector<float>> k_median::randomize_centroids(
 			if (data[i][j] > max_elements[j]) max_elements[j] = data[i][j];
 		}
 	}
-
+	*/
 	srand(time(NULL));
 
 
 	std::vector<std::vector<float>> tmp_centroids;
+	/*
 	for (int i = 0; i < n_clusters; ++i) {
 		std::vector<float> tmp;
 		for (int j = 0; j < n_features; ++j) {
 			tmp.push_back(rand() % (int)(max_elements[j] + min_elements[j]) + ((int)min_elements[j]));
 		}
 		tmp_centroids.push_back(tmp);
+	}
+	*/
+	for (int i = 0; i < n_clusters; ++i) {
+		int random = rand() % data.size();
+		tmp_centroids.push_back(data[random]);
 	}
 
 	/*
@@ -205,12 +212,12 @@ std::vector<std::vector<float>> k_means_plus::randomize_centroids(
 	}
 	
 	// Print new center points
-	std::cout << "\nGenerated centroids\n";
+	/*std::cout << "\nGenerated centroids\n";
 	for (int i = 0; i < cent.size(); ++i) {
 		std::cout << i << ". Centroid\n";
 		for (int j = 0; j < cent[i].size(); ++j) std::cout << cent[i][j] << ", ";
 		std::cout << "\n";
-	}
+	}*/
 
 	return cent;
 }

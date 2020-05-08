@@ -2,18 +2,29 @@
 //
 
 #include "UnsupervisedLib.h"
+
 #include "algos/Kmeans.h"
 #include "util/Printer.h"
 #include "algos/bagglomerative.h"
 #include "algos/Hierarchical.h"
 #include "algos/kbase.h"
 #include "algos/lsr.h"
+#include "algos/dbscan.h"
+#include "util/FileReader.h"
+
+#include "tests/kalgorithmtests.h"
+#include "tests/agglomerativetests.h"
+#include "tests/dbscantests.h"
+#include "tests/prep.h"
+
+
 
 int main()
 {
 	// Also write example cases and tests for that code.
 	// And by the way create file reading util service
 	// And also printer service ****** This is important..
+	
 	const std::vector<std::vector<float>> d
 	{ {1,-1,4},
 		{2,3,5},
@@ -36,16 +47,15 @@ int main()
 	print p;
 	p.dataFrame("Data Points", d);
 	p.dataFrame("Final Centroid Values",k.centroids);
-	
-	for (float f : k.error_logs)
-		std::cout << "Error: " << f << "\n";
-	
+	p.print1D("K-means error", k.error_logs);
+
+	/*
 	std::vector<float> f{ 2,4,1 };
 	std::cout << "Prediction : " << k.predict(f)<<"\n";
 
 	for (int kk : k.predict(d)) {
 		std::cout << "Prediction : " << kk<<"\n";
-	}
+	}*/
 
 	const std::vector<std::vector<float>> dd{
 		{1.25,0},
@@ -59,16 +69,14 @@ int main()
 
 	// std::cout << "\n--------------------------------------\n";
 	// std::cout << "\n*******************************************\n";
-	hierarchicalTree t;
-	t.build(d);
+	// hierarchicalTree t;
+	// t.build(d);
 	
 	k_median m(2, 100);
 	m.fit(d);
 	p.dataFrame("Final Centroid Values", m.centroids);
-	for (int kk : m.predict(d)) {
-		std::cout << "Prediction : " << kk << "\n";
-	}
-	std::cout << "\n***** K-MEANS PLUS PLUS ***********************\n";
+	// p.print1D("k-median predict", m.predict(d));
+	std::cout << std::endl;
 	k_means_plus plu(3, 100);
 	plu.fit(d);
 	p.dataFrame("K-Means Plus Centroid Values", plu.centroids);
@@ -83,6 +91,26 @@ int main()
 	lsr.fit(pair);
 	lsr.displayEquation();
 	std::cout<<"Prediction: "<< lsr.predict(8)<<"\n";
+
+	// DBSCAN dbscan(4, 5);
+	// dbscan.fit(d);
+
+
 	
+
+	std::vector<std::vector<float>> clean = prepdata::iris();
+
+	k_means_plus model(4, 200);
+	model.fit(clean);
+	p.print1D("Iris error values", model.error_logs);
+	p.dataFrame("Iris Centorid Values", model.centroids);
+	
+	std::cout << "\n********************\n";
+	std::vector<std::vector<float>> preperation = prepdata::iris();
+	kalgorithmtests::kmplus(preperation, 3, 200);
+	kalgorithmtests::kmedian(preperation, 3, 200);
+	kalgorithmtests::kmeans(preperation, 3, 200);
+	// agglomerativetests::buildTree(preperation);
+	dbscantest::fit(preperation, 0.30, 20);
 	return 0;
 }

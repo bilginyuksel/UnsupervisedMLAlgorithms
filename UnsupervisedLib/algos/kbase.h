@@ -1,3 +1,4 @@
+
 #ifndef vector
 #include <vector>
 #endif
@@ -13,6 +14,11 @@
 #ifndef stdlib
 #include <stdlib.h>
 #endif
+
+#ifndef KBASE
+
+
+#define KBASE
 
 class kbase {
 public:
@@ -90,3 +96,5 @@ private:
 	std::vector<std::vector<float>> update_centroids(
 		const std::vector<std::vector<float>>& data);
 };
+
+#endif // !KBASE
