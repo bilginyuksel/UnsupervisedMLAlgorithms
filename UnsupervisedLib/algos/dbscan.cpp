@@ -3,21 +3,25 @@
 void DBSCAN::fit(const std::vector<std::vector<float>>& data) {
 	for (const std::vector<float>& d : data) points.push_back(db_point(d));
 
+	/*
 	std::cout << "----------- POINTS BEFORE CLUSTERING -------------------\n";
 	for (const db_point& s : points) {
 		for (int z = 0; z < s.data.size(); ++z) std::cout << s.data[z] << ", ";
 		std::cout << "status:" << s.status << "\n";
-	}
+	}*/
 
 	int clusterID = 1;
 	for (int i = 0; i < points.size(); ++i)
 		if (points[i].status == UNCLASSIFIED) if (expandCluster(points[i], clusterID)) clusterID++;
 
 	std::cout << "----------- POINTS AFTER CLUSTERING -------------------\n";
+	std::cout << "UNCLASSIFIED: -1, NOISE: 0\n";
+	std::cout << "{ ";
 	for (const db_point& s : points) {
-		for (int z = 0; z < s.data.size(); ++z) std::cout << s.data[z] << ", ";
-		std::cout << "status:" << s.status << "\n";
-	}
+		// for (int z = 0; z < s.data.size(); ++z) std::cout << s.data[z] << ", ";
+		// std::cout << "status:" << s.status << "\n";
+		std::cout << s.status << ", ";
+	}std::cout << "}";
 }
 
 

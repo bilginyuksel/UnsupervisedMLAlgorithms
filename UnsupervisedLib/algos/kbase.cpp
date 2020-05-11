@@ -4,9 +4,9 @@
 float kbase::calculateError(
 	const std::vector<std::vector<float>>& old_centroids,
 	const std::vector<std::vector<float>>& n_centroids) {
-	// Error situation
+	// The term error we use here is the distance between centroids.
 	if (old_centroids.size() != n_centroids.size()) throw - 1;
-	// Calculate the error between them.
+	// Calculate the error between them which is distance
 	int len = old_centroids.size();
 	float error = 0;
 	for (int i = 0; i < len; ++i) error += dist::euclid(old_centroids[i], n_centroids[i]);
@@ -15,6 +15,13 @@ float kbase::calculateError(
 }
 
 void kbase::fit(const std::vector<std::vector<float>>& data) {
+	// For all K clustering algorithms fit method.
+	// First of all it calls for randomize_centroids which is different for K algorihms.
+	// OTher algorithm classes override's the method randomize centroid.
+	// Then it initializes an error which pretty big. and iteration from -1 and incrementing every step
+	// In while loop our conditions which is error is not equal to 0 and iteration is smalelr than max iter.
+	// In this while loop every step we're updating our centroids. And the update method
+	// is also different for other k classes.
 
 	this->centroids = randomize_centroids(data[0].size(), data);
 	float error = 100;
@@ -89,33 +96,12 @@ std::vector<std::vector<float>> k_median::randomize_centroids(
 	/*
 	Randomize numbers between the largest point of data and the minimum point of data
 	----------------------------------------------------------*/
-	/*
-	std::vector<float> min_elements;
-	std::vector<float> max_elements;
-	for (int i = 0; i < n_features; ++i) {
-		min_elements.push_back(data[0][i]);
-		max_elements.push_back(data[0][i]);
-	}
-	for (int i = 1; i < data.size(); ++i) {
-		for (int j = 0; j < data[0].size(); ++j) {
-			if (data[i][j] < min_elements[j]) min_elements[j] = data[i][j];
-			if (data[i][j] > max_elements[j]) max_elements[j] = data[i][j];
-		}
-	}
-	*/
+	
 	srand(time(NULL));
 
 
 	std::vector<std::vector<float>> tmp_centroids;
-	/*
-	for (int i = 0; i < n_clusters; ++i) {
-		std::vector<float> tmp;
-		for (int j = 0; j < n_features; ++j) {
-			tmp.push_back(rand() % (int)(max_elements[j] + min_elements[j]) + ((int)min_elements[j]));
-		}
-		tmp_centroids.push_back(tmp);
-	}
-	*/
+	
 	for (int i = 0; i < n_clusters; ++i) {
 		int random = rand() % data.size();
 		tmp_centroids.push_back(data[random]);
@@ -164,7 +150,7 @@ std::vector<std::vector<float>> k_median::update_centroids(
 }
 
 // *************************************************************
-// K-Means implementation
+// K-Means++ implementation
 
 std::vector<std::vector<float>> k_means_plus::randomize_centroids(
 	int n_features,

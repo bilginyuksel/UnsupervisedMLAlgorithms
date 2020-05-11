@@ -111,6 +111,6 @@ int main()
 	kalgorithmtests::kmedian(preperation, 3, 200);
 	kalgorithmtests::kmeans(preperation, 3, 200);
 	// agglomerativetests::buildTree(preperation);
-	dbscantest::fit(preperation, 0.30, 20);
+	dbscantest::fit(preperation, 0.3512, 20);
 	return 0;
 }
