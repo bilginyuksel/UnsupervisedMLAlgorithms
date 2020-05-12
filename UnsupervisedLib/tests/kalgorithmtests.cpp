@@ -12,8 +12,13 @@ k_means_plus kalgorithmtests::kmplus(
 	k.fit(data);
 
 	// Log errors
-	// disp.print1D("K-means++ errors", k.error_logs);
+	disp.print1D("K-means++ errors", k.error_logs);
 	disp.dataFrame("K-means++ centroids", k.centroids);
+	
+	std::vector<std::vector<float>> test{
+		{5.1, 2.4,3.2,1.8},{2.3,3.1,5,1.1},{1.1,3.4,5.5,3.2},{4.3,5.5,3.3,1.1}};
+	disp.dataFrame("Test Data", test);
+	disp.print1D("Predictions",k.predict(test));
 
 	return k;
 }
@@ -29,9 +34,12 @@ k_median kalgorithmtests::kmedian(
 	k.fit(data);
 
 	// Log errors
-	// disp.print1D("K-median errors", k.error_logs);
+	disp.print1D("K-median errors", k.error_logs);
 	disp.dataFrame("K-median centroids", k.centroids);
-
+	std::vector<std::vector<float>> test{
+		{5.1, 2.4,3.2,1.8},{2.3,3.1,5,1.1},{1.1,3.4,5.5,3.2},{4.3,5.5,3.3,1.1} };
+	disp.dataFrame("Test Data", test);
+	disp.print1D("Predictions", k.predict(test));
 	return k;
 }
 
@@ -46,8 +54,11 @@ KMeans kalgorithmtests::kmeans(
 	k.fit(data);
 
 	// Log errors
-	// disp.print1D("K-means errors", k.error_logs);
+	disp.print1D("K-means errors", k.error_logs);
 	disp.dataFrame("K-means centroids", k.centroids);
-
+	std::vector<std::vector<float>> test{
+		{5.1, 2.4,3.2,1.8},{2.3,3.1,5,1.1},{1.1,3.4,5.5,3.2},{4.3,5.5,3.3,1.1} };
+	disp.dataFrame("Test Data", test);
+	disp.print1D("Predictions", k.predict(test));
 	return k;
 }

@@ -102,7 +102,7 @@ int main()
 
 	k_means_plus model(4, 200);
 	model.fit(clean);
-	p.print1D("Iris error values", model.error_logs);
+	p.print1D("error values", model.error_logs);
 	p.dataFrame("Iris Centorid Values", model.centroids);
 	
 	std::cout << "\n********************\n";
@@ -110,7 +110,7 @@ int main()
 	kalgorithmtests::kmplus(preperation, 3, 200);
 	kalgorithmtests::kmedian(preperation, 3, 200);
 	kalgorithmtests::kmeans(preperation, 3, 200);
-	// agglomerativetests::buildTree(preperation);
+	agglomerativetests::buildTree(preperation);
 	dbscantest::fit(preperation, 0.3512, 20);
 	return 0;
 }
